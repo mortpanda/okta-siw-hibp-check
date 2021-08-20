@@ -1,6 +1,7 @@
-
+var strResponse;
 
 function OktaWidget() {
+    
     const oktaSignIn = new OktaSignIn({
         logo: 'https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png',
         language: 'ja',
@@ -12,7 +13,7 @@ function OktaWidget() {
             'en': {
                 'primaryauth.title': 'Log In',             // Changes the sign in text
                 'primaryauth.submit': 'Log In',            // Changes the sign in button
-                'errors.E0000004': 'Signin Failed / ログインに失敗しました',
+                //'errors.E0000004': 'Signin Failed / ログインに失敗しました',
                 // More e.g. [primaryauth.username.placeholder,  primaryauth.password.placeholder, needhelp, etc.].
                 // Full list here: https://github.com/okta/okta-signin-widget/blob/master/packages/@okta/i18n/dist/properties/login.properties
             }
@@ -32,12 +33,14 @@ function OktaWidget() {
             display: 'page',
             scope: ['openid','email','profile']
         },
+        
         registration: {
             parseSchema: function (schema, onSuccess, onFailure) {
                 console.log(schema.profileSchema);
                 onSuccess(schema);
             },
             preSubmit: function (postData, onSuccess, onFailure) {
+                
                 // handle preSubmit callback
                 var getEmailvalue = document.getElementsByName('email')[0].value;
                 //var getAcceptedPrivacyPolicyValue = document.getElementsByName('acceptedPrivacyPolicy')[0].value;
@@ -46,24 +49,42 @@ function OktaWidget() {
                 var getPassword = document.getElementsByName('password')[0].value;
 
                 var strValue =  SHA1(getPassword)
-                console.log(strValue);
+                //console.log(strValue);
                 //alert(strValue);
                 
-                fetch("https://api.pwnedpasswords.com/range/ea5bb", {
+                var strQueryString = (strValue.substring(0, 5));
+                var strResponse 
+                console.log(strQueryString);
+                fetch("https://api.pwnedpasswords.com/range/" + strQueryString, {
                     method: 'GET',                    
                   })
 
                   .then((response) => {
                     if(response.ok) { // ステータスがokならば
                       return response.text(); // レスポンスをテキストとして変換する
+                      //console.log(response); 
+                      
+                      
                     } else {
                       throw new Error();
                     }
                   })
-                  .then((text) => console.log(text))
-                  .catch((error) => console.log(error));
+                  //.then((text) => console.log(text))
+                  .then((html)=> {document.getElementById("console").innerHTML = html});
 
-                    //.then((response) => response.text())
+
+                  //.then((text) => console.log(text))
+                  
+                  //alert('test');
+                  //var strResponseText = text;
+                  
+//                  document.getElementById("console2").textContent = strResponseText;
+                  //document.getElementByClassName("console2").innerHTML = strResponseText;
+                  //document.getElementById("console2").textContent = "test";
+                  //terminal
+                        //document.getElementById("terminal").innerHTML = 
+
+                    
                     //.then((text) => console.log(text))
                     //.catch((error) => console.log(error));
                 
@@ -73,19 +94,8 @@ function OktaWidget() {
                 //ea5bb5d7955b3513315e13c849bd7c06fdd89840
                 //ea5bb5d7955b3513315e13c849bd7c06fdd89840
 
-                //postData.acceptedPrivacyPolicy = Boolean(getAcceptedPrivacyPolicyValue);
-                //console.log(postData);
-
-                // if (getAcceptedPrivacyPolicyValue == "") {
-                //     var labelAcceptedPrivacyPolicy = document.getElementById('label-my-acceptedPrivacyPolicy');
-                //     if (document.getElementById('acceptedPrivacyPolicy-error') == undefined) {
-                //         labelAcceptedPrivacyPolicy.insertAdjacentHTML('afterend', "<p id='acceptedPrivacyPolicy-error' style='color:#d93934;'>You must agree to the terms of use.</p>");
-                //     }
-                // }
-                // else {
-                //onSuccess(postData);
-                // }
             },
+            
             postSubmit: function (response, onSuccess, onFailure) {
                 // handle postsubmit callback
 
@@ -93,8 +103,10 @@ function OktaWidget() {
             }
         }
     });
+    
     oktaSignIn.on('afterRender', function (context) {
         console.log(context.controller);
+        
 
         if (context.controller == 'registration') {
             // Retrieve fields
@@ -187,13 +199,15 @@ function OktaWidget() {
 
                 // document.getElementById("messageBox").style.color = "	#FFFFFF";
                 // document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
-                window.location.replace("https://ciam-sample-1.white-lions-den.duckdns.org/");
+                //window.location.replace("https://ciam-sample-1.white-lions-den.duckdns.org/");
 
                 return;
             }
 
-            oktaSignIn.renderEl(
+            oktaSignIn.renderEl
+            (
                 { el: '#okta-signin-container' },
+                
                 function success(res) {
                     var key = '';
                     if (res.tokens) {
@@ -204,6 +218,7 @@ function OktaWidget() {
                         }
                     }
                 },
+                
 
                 function error(err) {
                     console.error(err);
