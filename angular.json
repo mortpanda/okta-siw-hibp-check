@@ -30,7 +30,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["src/app/okta-widget.js"]
           },
           "configurations": {
             "production": {
@@ -93,7 +93,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["src/app/okta-widget.js"]
           }
         },
         "lint": {
