@@ -53,13 +53,13 @@ function OktaWidget() {
                 //alert(strValue);
                 
                 var strQueryString = (strValue.substring(0, 5));
-                var strResponse 
+                
                 console.log(strQueryString);
                 fetch("https://api.pwnedpasswords.com/range/" + strQueryString, {
                     method: 'GET',                    
                   })
 
-                  .then((response) => {
+                  .then(async (response) => {
                     if(response.ok) { // ステータスがokならば
                       return response.text(); // レスポンスをテキストとして変換する
                       //console.log(response); 
@@ -70,15 +70,19 @@ function OktaWidget() {
                     }
                   })
                   //.then((text) => console.log(text))
-                  .then((html)=> {document.getElementById("console").innerHTML = html});
-
+                  //.then((html)=> {document.getElementById("console").innerHTML = html});
+                  .then((text) => {document.getElementById("console").innerHTML = text});
+                  
+                var note = document.getElementById("console");
+                console.log(note.innerHTML);
+                // console.log(note.textContent);
 
                   //.then((text) => console.log(text))
                   
                   //alert('test');
                   //var strResponseText = text;
                   
-//                  document.getElementById("console2").textContent = strResponseText;
+                    //document.getElementById("console2").textContent = strResponseText;
                   //document.getElementByClassName("console2").innerHTML = strResponseText;
                   //document.getElementById("console2").textContent = "test";
                   //terminal
@@ -88,23 +92,26 @@ function OktaWidget() {
                     //.then((text) => console.log(text))
                     //.catch((error) => console.log(error));
                 
-                //"https://api.pwnedpasswords.com/range/ea5bb"
-                //ChangeMe12345!
-                //Result for sha1:  ea5bb5d7955b3513315e13c849bd7c06fdd89840
-                //ea5bb5d7955b3513315e13c849bd7c06fdd89840
-                //ea5bb5d7955b3513315e13c849bd7c06fdd89840
+                    //"https://api.pwnedpasswords.com/range/ea5bb"
+                    //ChangeMe12345!
+                    //Result for sha1:  ea5bb5d7955b3513315e13c849bd7c06fdd89840
+                    //ea5bb5d7955b3513315e13c849bd7c06fdd89840
+                    //ea5bb5d7955b3513315e13c849bd7c06fdd89840
 
-            },
+             },
             
             postSubmit: function (response, onSuccess, onFailure) {
                 // handle postsubmit callback
 
                 onSuccess(response);
             }
+            
         }
+        
     });
     
     oktaSignIn.on('afterRender', function (context) {
+        
         console.log(context.controller);
         
 
@@ -126,50 +133,11 @@ function OktaWidget() {
             // Hide original drop-down field
             parentsAcceptedPrivacyPolicy.style.display = "none";
             
-
-            // Add checkbox
-            //parentsAcceptedPrivacyPolicy.insertAdjacentHTML('afterend', '<span data-se="o-form-input-my-acceptedPrivacyPolicy" class="o-form-input-name-remember"><div class="custom-checkbox"><input type="checkbox" name="my-acceptedPrivacyPolicy" id="my-acceptedPrivacyPolicy"><label id="label-my-acceptedPrivacyPolicy" for="my-acceptedPrivacyPolicy" data-se-for-name="my-acceptedPrivacyPolicy" class="">Accept the <a href="https://www.okta.com/privacy-policy/" target="_blank" id="link-acceptedPrivacyPolicy" style="color:blue">Privacy Policy</a>.</label>');
-
-            // Recovery of the field
-            //var newElemAcceptedPrivacyPolicy = document.getElementById('my-acceptedPrivacyPolicy');
-
             // Re-organise the form
-            //var form = document.getElementsByClassName('o-form-fieldset-container')[0];
-            //form.insertBefore(parentsFirstName, form.firstChild);
             $(parentsLastName).insertAfter(parentsFirstName);
             $(parentsEmail).insertAfter(parentsLastName);
             $(parentsPwd).insertAfter(parentsEmail);
             $('subschemas-password').insertAfter(parentsPwd);
-
-            // Management of Accepted Privacy Policy events
-            // newElemAcceptedPrivacyPolicy.addEventListener('click', function (e) {
-            //     e.preventDefault();
-            //     e.stopPropagation();
-            //     // Toggle check
-            //     var labelAcceptedPrivacyPolicy = document.getElementById('label-my-acceptedPrivacyPolicy');
-            //     if (labelAcceptedPrivacyPolicy.className === "checked") {
-            //         labelAcceptedPrivacyPolicy.className = "";
-            //         newElemAcceptedPrivacyPolicy.checked = false;
-            //         document.getElementsByName('acceptedPrivacyPolicy')[0].value = "";
-            //         labelAcceptedPrivacyPolicy.insertAdjacentHTML('afterend', "<p id='acceptedPrivacyPolicy-error'>You must accept to the privacy policy.</p>");
-            //     }
-            //     else {
-            //         labelAcceptedPrivacyPolicy.className = "checked";
-            //         newElemAcceptedPrivacyPolicy.checked = true;
-            //         document.getElementsByName('acceptedPrivacyPolicy')[0].value = true;
-            //         var errorAcceptedPrivacyPolicy = document.getElementById("acceptedPrivacyPolicy-error");
-            //         if (errorAcceptedPrivacyPolicy != undefined) {
-            //             errorAcceptedPrivacyPolicy.parentNode.removeChild(errorAcceptedPrivacyPolicy);
-            //         }
-            //     }
-            //     // set DOM reference variable
-            //     var field = document.getElementsByName('acceptedPrivacyPolicy')[0];
-            //     // create event with bubble set to true
-            //     var event = new Event("change", { bubbles: true });
-            //     // dispatch event for the desired DOM reference
-            //     field.dispatchEvent(event);
-            // });
-
         }
     });
     if (oktaSignIn.token.hasTokensInUrl()) {
@@ -196,11 +164,9 @@ function OktaWidget() {
         oktaSignIn.session.get(function (res) {
             // If we get here, the user is already signed in.
             if (res.status === 'ACTIVE') {
-
                 // document.getElementById("messageBox").style.color = "	#FFFFFF";
                 // document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
                 //window.location.replace("https://ciam-sample-1.white-lions-den.duckdns.org/");
-
                 return;
             }
 
@@ -228,8 +194,13 @@ function OktaWidget() {
         });
     }
 
-
+    
+    
 }
+
+
+
+
 /**
 * Secure Hash Algorithm (SHA1)
 * http://www.webtoolkit.info/
