@@ -80,7 +80,7 @@ function OktaWidget() {
                             
                             if(StringToCheck==StringFromHIBP){
                                 //alert('match found with comprised number' + arrLines[1]);
-                                document.getElementById("console").innerHTML = "<br><h1>" + "Match found, the password you tried to set has been comprimised " + arrLines[1] + "times." + "</h1>";
+                                document.getElementById("console").innerHTML = "<br><br><br><br><br><h1>" + "Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + "times." + "</h1>";
                             }
                             
                             
