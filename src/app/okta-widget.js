@@ -74,10 +74,12 @@ function OktaWidget() {
                         }
                         /////////////////////
                         ///////English///////
-                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " times." + "</h1>";
+                        
+                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Match found! The password entered has been comprimised " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " times according to HIBP" + "</h1>";
+                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Hashed password used to check against HIBP is " + "<font color=red>" + StringToCheck +"<font color=white>" + "</h2>";
                         ///////Japanese///////
-                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  入力されたパスワードはHIBMP上で " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
-                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h2>" + "  入力されたパスワードのハッシュ値は " + "<font color=red>" + StringToCheck +"<font color=white>" + " です。</h2>";
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードはHIBMP上で " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードのハッシュ値は " + "<font color=red>" + StringToCheck +"<font color=white>" + " です。</h2>";
                         /////////////////////
                         myDiv.scrollTop = myDiv.scrollHeight;
                     }else{

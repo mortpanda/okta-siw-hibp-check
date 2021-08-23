@@ -179,10 +179,9 @@
     color: white;
     overflow-y: scroll;
     
-    word-break:break-all;
+    word-break:break-word;
     font-size: 12px; 
   }
-
   .console::before {
     content: "\2022 \2022 \2022";
     position: absolute;
