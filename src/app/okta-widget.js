@@ -43,14 +43,12 @@ function OktaWidget() {
                 document.getElementById("console").innerHTML = " ";
                 // handle preSubmit callback
                 var getEmailvalue = document.getElementsByName('email')[0].value;
-                //var getAcceptedPrivacyPolicyValue = document.getElementsByName('acceptedPrivacyPolicy')[0].value;
                 var getFirstName = document.getElementsByName('firstName')[0].value;
                 var getLastName = document.getElementsByName('lastName')[0].value;
                 var getPassword = document.getElementsByName('password')[0].value;
 
                 var strValue =  SHA1(getPassword)
-                //console.log(strValue);
-                //alert(strValue);
+                
                 
                 var strQueryString = (strValue.substring(0, 5));
                 var strCompareText = (strValue.substring(5, 999));
@@ -60,77 +58,33 @@ function OktaWidget() {
                 var xmlHttpRequest = new XMLHttpRequest();
                 xmlHttpRequest.responseType = 'text';
                 xmlHttpRequest.onreadystatechange = function(){
-                    
-                    
                     if(this.readyState == 4 && this.status == 200){
                         
                         hbipres = this.responseText;
-                        
-                        //document.getElementById("console").innerHTML += this.responseText + "<br>";
-                        //console.log(this.responseText);
-                        //alert(this.responseText);
                         lines = hbipres.split("\n");
                         document.getElementById("console").innerHTML += "<br>"
                         for(i = 0; i < lines.length; i++){ 
                             document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + lines[i]; 
                               arrLines = lines[i].split(":");
-                            //console.log(arrLines[0]); 
-                            //console.log(arrLines[1]); 
-                            //console.log(arrLines[0].toUpperCase());
                             const StringFromHIBP = arrLines[0].toUpperCase();
                             const StringToCheck = strCompareText.toUpperCase();
-                            //const strMatchFound = StringToCheck.localeCompare(StringFromHIBP);
-                            
                             myDiv.scrollTop = myDiv.scrollHeight;
                             if(StringToCheck==StringFromHIBP){
-                                //alert('match found with comprised number' + arrLines[1]);
-                               //document.getElementById("console").innerHTML = "<br><br><br><br><br><h1>" + "Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + "times." + "</h1>";
                             }
-                            
-                            
-                            //console.log(StringToCheck);
-                            //var strMatch = arrLines[0].toLowerCase().localeCompare(strCompareText.toLowerCase());
-                            //console.log(strMatch);
-                            // console.log(strCompareText);
-                            //document.getElementById("console").innerHTML += lines[i] + "<br>";
                         }
                         
                         document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " times." + "</h1>";
                         myDiv.scrollTop = myDiv.scrollHeight;
+                    }else{
+                        
                     }
                 }
                 xmlHttpRequest.open('GET','https://api.pwnedpasswords.com/range/' + strQueryString,true);
-                xmlHttpRequest.send();
-
-                    //Changeme1!
-                    //718aa9c126a9b8ff916d265f76a43193202d1ed2
-                    //718aa
-                    //9c126a9b8ff916d265f76a43193202d1ed2
-                    //9C126A9B8FF916D265F76A43193202D1ED2
-                    
-                
-                    //"https://api.pwnedpasswords.com/range/ea5bb"
-                    //ChangeMe12345!
-                    //Result for sha1:  ea5bb5d7955b3513315e13c849bd7c06fdd89840
-                    //ea5bb5d7955b3513315e13c849bd7c06fdd89840
-                    //ea5bb5d7955b3513315e13c849bd7c06fdd89840
-                    //ea5bb
-                    //d7955b3513315e13c849bd7c06fdd89840
-                    
-                    //ea5bb
-                    //ea5bb5d7955b3513315e13c849bd7c06fdd89840
-                    //     5d7955b3513315e13c849bd7c06fdd89840
-                    //      d7955b3513315e13c849bd7c06fdd89840
-
-                    //password
-                    //5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8
-                    //5baa6
-                    
+                xmlHttpRequest.send();                    
              },
             
             postSubmit: function (response, onSuccess, onFailure) {
                 // handle postsubmit callback
-
                 onSuccess(response);
             }
             
@@ -139,14 +93,9 @@ function OktaWidget() {
     });
     
     oktaSignIn.on('afterRender', function (context) {
-        
         console.log(context.controller);
-        
-
         if (context.controller == 'registration') {
-            
-            
-            
+
             // Retrieve fields
             var nativElemFirstName = document.getElementsByName('firstName')[0];
             var nativElemLastName = document.getElementsByName('lastName')[0];
