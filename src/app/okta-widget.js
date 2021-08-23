@@ -1,5 +1,6 @@
 var strResponse;
 var arrLines;
+var strMatchedPW;
 
 function OktaWidget() {
     
@@ -21,7 +22,7 @@ function OktaWidget() {
             rememberMe: false,                             // Setting to false will remove the checkbox to save username
         },
         baseUrl: "https://csm-apac.oktapreview.com",
-        redirectUri: "http://192.168.1.210:4200/",
+        redirectUri: "https://mortpanda.github.io/okta-siw-hibp-check/",
         clientId: "0oa17rxjm2Fgi4yT31d7",   //CLIENT ID GOES HERE
         authParams: {
             issuer: 'https://csm-apac.oktapreview.comoauth2/default',
@@ -48,12 +49,8 @@ function OktaWidget() {
                 var getPassword = document.getElementsByName('password')[0].value;
 
                 var strValue =  SHA1(getPassword)
-                
-                
                 var strQueryString = (strValue.substring(0, 5));
                 var strCompareText = (strValue.substring(5, 999));
-                console.log(strQueryString);
-                console.log(strCompareText);
 
                 var xmlHttpRequest = new XMLHttpRequest();
                 xmlHttpRequest.responseType = 'text';
@@ -62,21 +59,25 @@ function OktaWidget() {
                         
                         hbipres = this.responseText;
                         lines = hbipres.split("\n");
-                        document.getElementById("console").innerHTML += "<br>"
+                        //document.getElementById("console").innerHTML += "<br>"
                         for(i = 0; i < lines.length; i++){ 
-                            document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + lines[i]; 
+                            document.getElementById("console").innerHTML += "<font color=white>" + '&nbsp' + '&nbsp' + lines[i] + "<br>"; 
                               arrLines = lines[i].split(":");
-                            const StringFromHIBP = arrLines[0].toUpperCase();
-                            const StringToCheck = strCompareText.toUpperCase();
+                            var StringFromHIBP = arrLines[0].toUpperCase();
+                            var StringToCheck = strCompareText.toUpperCase();
                             myDiv.scrollTop = myDiv.scrollHeight;
                             if(StringToCheck==StringFromHIBP){
+
+                                strMatchedPW = arrLines[1];
+                                document.getElementById("console").innerHTML += "<font color=red>" + '&nbsp' + '&nbsp' + lines[i] + "<br>"; 
                             }
                         }
                         /////////////////////
                         ///////English///////
                         //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " times." + "</h1>";
                         ///////Japanese///////
-                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  入力されたパスコードはHIBMP上で " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  入力されたパスワードはHIBMP上で " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h2>" + "  入力されたパスワードのハッシュ値は " + "<font color=red>" + StringToCheck +"<font color=white>" + " です。</h2>";
                         /////////////////////
                         myDiv.scrollTop = myDiv.scrollHeight;
                     }else{
