@@ -1,4 +1,5 @@
 var strResponse;
+var arrLines;
 
 function OktaWidget() {
     
@@ -11,11 +12,8 @@ function OktaWidget() {
         i18n: { 
             //Overrides default text when using English. Override other languages by adding additional sections.
             'en': {
-                'primaryauth.title': 'Log In',             // Changes the sign in text
-                'primaryauth.submit': 'Log In',            // Changes the sign in button
-                //'errors.E0000004': 'Signin Failed / ログインに失敗しました',
-                // More e.g. [primaryauth.username.placeholder,  primaryauth.password.placeholder, needhelp, etc.].
-                // Full list here: https://github.com/okta/okta-signin-widget/blob/master/packages/@okta/i18n/dist/properties/login.properties
+                'primaryauth.title': 'Log In',             
+                'primaryauth.submit': 'Log In',            
             }
         },
         features: {
@@ -35,12 +33,14 @@ function OktaWidget() {
         },
         
         registration: {
+            
             parseSchema: function (schema, onSuccess, onFailure) {
                 console.log(schema.profileSchema);
                 onSuccess(schema);
             },
             preSubmit: function (postData, onSuccess, onFailure) {
-                
+                const myDiv = document.getElementById("console");        
+                document.getElementById("console").innerHTML = " ";
                 // handle preSubmit callback
                 var getEmailvalue = document.getElementsByName('email')[0].value;
                 //var getAcceptedPrivacyPolicyValue = document.getElementsByName('acceptedPrivacyPolicy')[0].value;
@@ -60,17 +60,20 @@ function OktaWidget() {
                 var xmlHttpRequest = new XMLHttpRequest();
                 xmlHttpRequest.responseType = 'text';
                 xmlHttpRequest.onreadystatechange = function(){
+                    
+                    
                     if(this.readyState == 4 && this.status == 200){
                         
                         hbipres = this.responseText;
                         
-                        //document.getElementById("console").innerHTML = this.responseText;
+                        //document.getElementById("console").innerHTML += this.responseText + "<br>";
                         //console.log(this.responseText);
                         //alert(this.responseText);
                         lines = hbipres.split("\n");
+                        document.getElementById("console").innerHTML += "<br>"
                         for(i = 0; i < lines.length; i++){ 
-                            //console.log(lines[i]); 
-                            const arrLines = lines[i].split(":");
+                            document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + lines[i]; 
+                              arrLines = lines[i].split(":");
                             //console.log(arrLines[0]); 
                             //console.log(arrLines[1]); 
                             //console.log(arrLines[0].toUpperCase());
@@ -78,9 +81,10 @@ function OktaWidget() {
                             const StringToCheck = strCompareText.toUpperCase();
                             //const strMatchFound = StringToCheck.localeCompare(StringFromHIBP);
                             
+                            myDiv.scrollTop = myDiv.scrollHeight;
                             if(StringToCheck==StringFromHIBP){
                                 //alert('match found with comprised number' + arrLines[1]);
-                                document.getElementById("console").innerHTML = "<br><br><br><br><br><h1>" + "Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + "times." + "</h1>";
+                               //document.getElementById("console").innerHTML = "<br><br><br><br><br><h1>" + "Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + "times." + "</h1>";
                             }
                             
                             
@@ -90,8 +94,9 @@ function OktaWidget() {
                             // console.log(strCompareText);
                             //document.getElementById("console").innerHTML += lines[i] + "<br>";
                         }
-
                         
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " times." + "</h1>";
+                        myDiv.scrollTop = myDiv.scrollHeight;
                     }
                 }
                 xmlHttpRequest.open('GET','https://api.pwnedpasswords.com/range/' + strQueryString,true);
@@ -140,8 +145,7 @@ function OktaWidget() {
 
         if (context.controller == 'registration') {
             
-            //Clear the console
-            document.getElementById("console").innerHTML = " ";
+            
             
             // Retrieve fields
             var nativElemFirstName = document.getElementsByName('firstName')[0];
@@ -168,24 +172,24 @@ function OktaWidget() {
         }
     });
     if (oktaSignIn.token.hasTokensInUrl()) {
-        oktaSignIn.token.parseTokensFromUrl(
-            // If we get here, the user just logged in.
-            function success(res) {
-                var accessToken = res[0];
-                var idToken = res[1];
+        // oktaSignIn.token.parseTokensFromUrl(
+        //     // If we get here, the user just logged in.
+        //     function success(res) {
+        //         var accessToken = res[0];
+        //         var idToken = res[1];
 
-                oktaSignIn.tokenManager.add('accessToken', accessToken);
-                oktaSignIn.tokenManager.add('idToken', idToken);
-                window.location.hash = '';
-                // document.getElementById("messageBox").style.color = "	#FFFFFF";
-                // document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
-                window.location.hash = '';
+        //         oktaSignIn.tokenManager.add('accessToken', accessToken);
+        //         oktaSignIn.tokenManager.add('idToken', idToken);
+        //         window.location.hash = '';
+        //         // document.getElementById("messageBox").style.color = "	#FFFFFF";
+        //         // document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+        //         window.location.hash = '';
 
-            },
-            function error(err) {
-                // console.error(err);
-            }
-        )
+        //     },
+        //     function error(err) {
+        //         // console.error(err);
+        //     }
+        // )
     } else {
 
         oktaSignIn.session.get(function (res) {
@@ -201,16 +205,16 @@ function OktaWidget() {
             (
                 { el: '#okta-signin-container' },
                 
-                function success(res) {
-                    var key = '';
-                    if (res.tokens) {
-                        oktaSignIn.authClient.tokenManager.add('accessToken', res.tokens.accessToken);
-                        oktaSignIn.authClient.tokenManager.add('idToken', res.tokens.idToken);
-                        if (res.status === 'SUCCESS') {
-                            login(res.tokens.idToken, res.tokens.accessToken);
-                        }
-                    }
-                },
+                // function success(res) {
+                //     var key = '';
+                //     if (res.tokens) {
+                //         oktaSignIn.authClient.tokenManager.add('accessToken', res.tokens.accessToken);
+                //         oktaSignIn.authClient.tokenManager.add('idToken', res.tokens.idToken);
+                //         if (res.status === 'SUCCESS') {
+                //             login(res.tokens.idToken, res.tokens.accessToken);
+                //         }
+                //     }
+                // },
                 
 
                 function error(err) {
