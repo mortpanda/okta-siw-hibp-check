@@ -1,422 +1,73 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
-  :host {
-    font-family: "ABCWhyte Book","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
-    font-size: 14px;
-    color: #41414B;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .spacer {
-    flex: 1;
-  }
-
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #00297A;
-    color: white;
-    font-weight: 600;
-    /* padding-bottom: 60px; */
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-  }
-
-  .toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover,
-  .toolbar #youtube-logo:hover {
-    opacity: 0.8;
-  }
-
-  .content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  svg.material-icons {
-    height: 24px;
-    width: auto;
-  }
-
-  svg.material-icons:not(:last-child) {
-    margin-right: 8px;
-  }
-
-  .card svg.material-icons path {
-    fill: #888;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .card {
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
-    height: 40px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    line-height: 24px;
-  }
-
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card) {
-    cursor: pointer;
-  }
-
-  .card-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-  .card.highlight-card {
-    background-color: #00297A;
-    font-family: "ABCWhyte Book","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
-    
-    color: white;
-    font-weight: 600;
-    border: none;
-    width: auto;
-    min-width: 30%;
-    position: relative;
-  }
-
-  .card.card.highlight-card span {
-    margin-left: 60px;
-  }
-
-  svg#rocket {
-    width: 80px;
-    position: absolute;
-    left: -10px;
-    top: -24px;
-  }
-
-  svg#rocket-smoke {
-    height: calc(100vh - 95px);
-    position: absolute;
-    top: 10px;
-    right: 180px;
-    z-index: -10;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #125699;
-  }
-
-  .console {
-    position: relative;
-    width: 100%;
-    height: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 20px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-    color: white;
-    overflow-y: scroll;
-    overflow-x: scroll;
-  }
-
-  .console::before {
-    content: "\2022 \2022 \2022";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: rgb(58, 58, 58);
-    color: #c2c3c4;
-    width: 100%;
-    font-size: 2rem;
-    line-height: 0;
-    padding: 14px 0;
-    text-indent: 4px;
-    /* overflow-y: scroll; */
-  }
-
-  .console pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-    color: white;
-    padding: 0 1rem 1rem;
-    margin: 0;
-    overflow-y: scroll;
-  }
-
-  .circle-link {
-    height: 40px;
-    width: 40px;
-    border-radius: 40px;
-    margin: 8px;
-    background-color: white;
-    border: 1px solid #eeeeee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 1s ease-out;
-  }
-
-  .circle-link:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
-
-  footer a {
-    display: flex;
-    align-items: center;
-  }
-
-  .github-star-badge {
-    color: #24292e;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
-    border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
-    margin-left: 4px;
-    font-weight: 600;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-  }
-
-  .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
-    background-position: -.5em;
-  }
-
-  .github-star-badge .material-icons {
-    height: 16px;
-    width: 16px;
-    margin-right: 4px;
-  }
-
-  svg#clouds {
-    position: fixed;
-    bottom: -160px;
-    left: -230px;
-    z-index: -10;
-    width: 1920px;
-  }
-
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-
-    .card-container > *:not(.circle-link) ,
-    
-    .console {
-      width: 100%;
-      /* height:100%; */
-      overflow-y: scroll;
-      color:white;
-    }
-
-    body { padding-top: 60px; }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  }
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
-
-  .mat-grid-tile {
-    display: block;
-    position: absolute;
-    overflow: hidden;
-    padding-top: 60px;
-}
-.mat-grid-list {
-    display: block;
-    position: relative;
-    padding-top: 60px;
-}
-
-.section_head{
-  padding-left: 20px;
-}
-
-.section{
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.okta_logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  
-}
-.tile-content .list{
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-}
-
-.mat-grid-tile .mat-figure {
-   justify-content: center !important ;
-   align-items: center !important;
-}
-
-.github_logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 2%;
-  padding-top: 5px; 
-}
-</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 
-
-
-
 <div>
-  
-    <img alt='Github link to repo' src='../assets/img/GitHub_Logo.png' class="github_logo">
-    <p style="text-align:center;">Link to Gihub repo</p>
+    <a href='https://github.com/mortpanda/okta-siw-hibp-check' target="_blank">
+    <img alt='Github link to repo'  src='../assets/img/GitHub_Logo.png' class="github_logo">
+    <p style="text-align:center;">Link to Gihub repo</p></a>
   
 
-  <mat-grid-list #grid [cols]="cols" rowHeight="1:1.1" gutterSize="20px" >
+  <mat-grid-list #grid [cols]="cols" rowHeight="1:1.1" gutterSize="50px" >
     <mat-grid-tile><div class="tile-content" id="okta-signin-container"></div></mat-grid-tile>
     <mat-grid-tile><div id="console" class="console">
       <br>
+      <!-- -------------- -->
+      <!-- English Below -->
+      <!-- -------------- -->
+      <!-- <h1 style="text-align:center">Okta Signin Widget with HIBP check</h1>
+      <br>
+      <h2 class="section_head">What does this signin widget do?</h2>
+      <p class="section">On the self-registration page, the widget will take the entered password, 
+        and check against "Have I been pwned"(https://haveibeenpwned.com/) password database on whether the password has been comprimised.
+        
+      </p>
+      <h2 class="section_head">How to use this widget</h2>
+      <p class="section">1. On the Okta Signin Widget, click on "Sign up".</p>
+      <p class="section">2. Enter information about your new account.</p>
+      <p class="section">3. Click "Submit".</p>
+      <br>
+      <p  class="section">The widget will not actually create an account.  Only go as far as checking the entered password again https://haveibeenpwned.com. </p>
+      <p  class="section">When a matched is found in HIBP, the results will be displayed on this screen.
+        Entered password will not actually be sent to the HIBP server.  The entered password will be hashed in SHA1, 
+        then the first 5 characters of the hashed password will be used to make an API call to the HIBP server, where the HIBP server will return all matchin suffixes, 
+        and the number of times the password has been found to be breached.
+      </p> -->
+
+      <!-- -------------- -->
+      <!-- Japanese Below -->
+      <!-- -------------- -->
       <h1 style="text-align:center">Okta Signin Widget with HIBP check</h1>
       <br>
 
-      <h2 class="section_head">What does this signin widget do?</h2>
-      <p class="section">On the self-registration page, the widget will take the entered password, and check against "Have I been pwned"(https://haveibeenpwned.com/) password database on whether the password has been comprimised.
+      <h2 class="section_head">このWidgetの目的</h2>
+      <p class="section">Okta WidgetのSelf-service Registration機能を使い、<br>テナント上でアカウントを作成する際に、入力されたパスコードを「Have I been pwned」(https://haveibeenpwned.com)
+        上の漏洩パスワードリストと比較し、「Have I been pwned」上で漏洩した回数をターミナル上に表示します。
+      
         
       </p>
-      <h2 class="section_head">How to use this widget</h2>
-      <p class="section">1. On the Okta Signin Widget, click on "Sign up".</p>
-      <p class="section">2. Enter information about your new account.</p>
-      <p class="section">3. Click "Submit".</p>
+      <h2 class="section_head">Widgetの使い方</h2>
+      <p class="section">1. Widget上の「サインアップ」をクリック</p>
+      <p class="section">2. 作成するアカウントの情報を入力</p>
+      <p class="section">3. 「登録」をクリック</p>
       <br>
-      <p  class="section">The widget will not actually create an account.  Only go as far as checking the entered password again https://haveibeenpwned.com. </p>
-      <p  class="section">When a matched is found in HIBP, the results will be displayed on this screen.</p>
+      <p  class="section">実際にはユーザーは作成されません。「Have I been pwned」(https://haveibeenpwned.com)との確認のみになります。</p>
+      <p  class="section">パスワードの確認方法についても、パスワードが「Have I been pwned」(https://haveibeenpwned.com)に送信される訳で無く、ハッシュ化されたパスワードの最初の5文字のみ、
+        「Have I been pwned」(https://haveibeenpwned.com)に送信されます。詳しくは以下のURLをご覧ください。
+        <a href='https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange'>https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange</a>
 
-      <!-- Japanese Below -->
-      <!-- <h1 style="text-align:center">Okta Signin Widget with HIBP check</h1>
-      <br>
-
-      <h2 class="section_head">What does this signin widget do?</h2>
-      <p class="section">On the self-registration page, the widget will take the entered password, and check against "Have I been pwned"(https://haveibeenpwned.com/) password database on whether the password has been comprimised.
-        
       </p>
-      <h2 class="section_head">How to use this widget</h2>
-      <p class="section">1. On the Okta Signin Widget, click on "Sign up".</p>
-      <p class="section">2. Enter information about your new account.</p>
-      <p class="section">3. Click "Submit".</p>
-      <br>
-      <p  class="section">The widget will not actually create an account.  Only go as far as checking the entered password again https://haveibeenpwned.com. </p>
-      <p  class="section">When a matched is found in HIBP, the results will be displayed on this screen.</p> -->
+      <!-- -------------- -->
+      <!-- -------------- -->
+      <!-- -------------- -->
+
 
     </div></mat-grid-tile>
-    <mat-grid-tile><div ><video autoplay="true" muted="" loop="" preload="metadata" width="70%" height="70%"
+    <mat-grid-tile><div ><video autoplay="true" muted="" loop="" preload="metadata" width="70%" height="70%" 
       ><source src="https://www-assets.okta.com/homepage/a1_r06_v16_transp_cropped_mov_1M_crf63_1024px.webm" type="video/webm" class="tile-content"></video></div></mat-grid-tile>
   </mat-grid-list>
   
-  <img src='https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png' height="90" class="okta_logo">
+  <img src='../assets/img/Customer-Success.png' height="60" class="okta_logo">
     
 </div>
 
@@ -429,12 +80,5 @@
 
 </div>
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet></router-outlet>

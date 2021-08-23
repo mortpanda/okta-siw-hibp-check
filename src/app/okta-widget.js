@@ -72,8 +72,12 @@ function OktaWidget() {
                             if(StringToCheck==StringFromHIBP){
                             }
                         }
-                        
-                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " times." + "</h1>";
+                        /////////////////////
+                        ///////English///////
+                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  Match found, the password you tried to set has been comprimised " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " times." + "</h1>";
+                        ///////Japanese///////
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1>" + "  入力されたパスコードはHIBMP上で " + "<font color=red>" + arrLines[1] +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
+                        /////////////////////
                         myDiv.scrollTop = myDiv.scrollHeight;
                     }else{
                         
@@ -120,6 +124,8 @@ function OktaWidget() {
             $('subschemas-password').insertAfter(parentsPwd);
         }
     });
+    
+    /// Uncomment this section to handle tokens
     if (oktaSignIn.token.hasTokensInUrl()) {
         // oktaSignIn.token.parseTokensFromUrl(
         //     // If we get here, the user just logged in.
@@ -130,10 +136,6 @@ function OktaWidget() {
         //         oktaSignIn.tokenManager.add('accessToken', accessToken);
         //         oktaSignIn.tokenManager.add('idToken', idToken);
         //         window.location.hash = '';
-        //         // document.getElementById("messageBox").style.color = "	#FFFFFF";
-        //         // document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
-        //         window.location.hash = '';
-
         //     },
         //     function error(err) {
         //         // console.error(err);
@@ -144,16 +146,13 @@ function OktaWidget() {
         oktaSignIn.session.get(function (res) {
             // If we get here, the user is already signed in.
             if (res.status === 'ACTIVE') {
-                // document.getElementById("messageBox").style.color = "	#FFFFFF";
-                // document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
-                //window.location.replace("https://ciam-sample-1.white-lions-den.duckdns.org/");
                 return;
             }
 
             oktaSignIn.renderEl
             (
                 { el: '#okta-signin-container' },
-                
+                /// Uncomment this section to obtain token
                 // function success(res) {
                 //     var key = '';
                 //     if (res.tokens) {
@@ -165,7 +164,6 @@ function OktaWidget() {
                 //     }
                 // },
                 
-
                 function error(err) {
                     console.error(err);
                 }
@@ -174,12 +172,7 @@ function OktaWidget() {
         });
     }
 
-    
-    
 }
-
-
-
 
 /**
 * Secure Hash Algorithm (SHA1)
