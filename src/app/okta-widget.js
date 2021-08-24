@@ -6,7 +6,7 @@ function OktaWidget() {
     
     const oktaSignIn = new OktaSignIn({
         //logo: 'https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png',
-        language: 'ja',
+        language: 'en',
         colors: {
             brand: '#00297A'
           },
@@ -21,11 +21,11 @@ function OktaWidget() {
             registration: true,                           // Enable self-service registration flow
             rememberMe: false,                             // Setting to false will remove the checkbox to save username
         },
-        baseUrl: "https://csm-apac.oktapreview.com",
-        redirectUri: "https://mortpanda.github.io/okta-siw-hibp-check/",
-        clientId: "aaa0oa17rxjm2Fgi4yT31d7",   //CLIENT ID GOES HERE
+        baseUrl: "{{base URL of the Okta org}}",
+        redirectUri: "{{Redirect URL in the Okta OIDC application}}",
+        clientId: "{{Cliend ID of the OIDC App}}",   //CLIENT ID GOES HERE
         authParams: {
-            issuer: 'https://csm-apac.oktapreview.comoauth2/default',
+            issuer: '{{Authorisation server URL}}',
             issuer: 'default',
             responseType: ['token', 'id_token'],
             responseMode: 'fragment',
@@ -75,11 +75,11 @@ function OktaWidget() {
                         /////////////////////
                         ///////English///////
                         
-                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Match found! The password entered has been comprimised " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " times according to HIBP" + "</h1>";
-                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Hashed password used to check against HIBP is " + "<font color=red>" + StringToCheck +"<font color=white>" + "</h2>";
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Match found! The password entered has been comprimised " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " times according to HIBP" + "</h1>";
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Hashed password used to check against HIBP is " + "<font color=red>" + StringToCheck +"<font color=white>" + "</h2>";
                         ///////Japanese///////
-                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードはHIBP上で " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
-                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードのハッシュ値は " + "<font color=red>" + StringToCheck +"<font color=white>" + " です。</h2>";
+                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードはHIBP上で " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
+                        //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードのハッシュ値は " + "<font color=red>" + StringToCheck +"<font color=white>" + " です。</h2>";
                         /////////////////////
                         myDiv.scrollTop = myDiv.scrollHeight;
                     }else{
