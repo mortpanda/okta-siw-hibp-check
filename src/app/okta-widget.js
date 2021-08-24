@@ -21,11 +21,11 @@ function OktaWidget() {
             registration: true,                           // Enable self-service registration flow
             rememberMe: false,                             // Setting to false will remove the checkbox to save username
         },
-        baseUrl: "https://csm-apac.oktapreview.com",
-        redirectUri: "https://mortpanda.github.io/okta-siw-hibp-check/",
-        clientId: "aaa0oa17rxjm2Fgi4yT31d7",   //CLIENT ID GOES HERE
+        baseUrl: "{{Base URL of the Okta org}}",
+        redirectUri: "{{Redirect URL set in the Okta OIDC app}}",
+        clientId: "{{Okta OIDC Application's client ID}}",   //CLIENT ID GOES HERE
         authParams: {
-            issuer: 'https://csm-apac.oktapreview.comoauth2/default',
+            issuer: '{{OIDC authorisation server URL}}',
             issuer: 'default',
             responseType: ['token', 'id_token'],
             responseMode: 'fragment',
