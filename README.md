@@ -43,7 +43,7 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
 
 - Inside the JS file, the below section will need to be updated with your setting.
 
----js
+```
         language: 'ja',
         colors: {
             brand: '#00297A'
@@ -70,5 +70,5 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
             display: 'page',
             scope: ['openid','email','profile']
         },
----
+```
 
