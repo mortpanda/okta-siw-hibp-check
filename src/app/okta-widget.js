@@ -23,7 +23,7 @@ function OktaWidget() {
         },
         baseUrl: "https://csm-apac.oktapreview.com",
         redirectUri: "https://mortpanda.github.io/okta-siw-hibp-check/",
-        clientId: "0oa17rxjm2Fgi4yT31d7",   //CLIENT ID GOES HERE
+        clientId: "aaa0oa17rxjm2Fgi4yT31d7",   //CLIENT ID GOES HERE
         authParams: {
             issuer: 'https://csm-apac.oktapreview.comoauth2/default',
             issuer: 'default',
