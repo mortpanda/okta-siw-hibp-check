@@ -45,9 +45,6 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
 
 ```
         language: 'ja',
-        colors: {
-            brand: '#00297A'
-          },
         i18n: { 
             //Overrides default text when using English. Override other languages by adding additional sections.
             'en': {
