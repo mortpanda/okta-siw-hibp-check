@@ -6,7 +6,7 @@ function OktaWidget() {
     
     const oktaSignIn = new OktaSignIn({
         //logo: 'https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png',
-        language: 'en',
+        language: 'ja',
         colors: {
             brand: '#00297A'
           },
@@ -21,11 +21,11 @@ function OktaWidget() {
             registration: true,                           // Enable self-service registration flow
             rememberMe: false,                             // Setting to false will remove the checkbox to save username
         },
-        baseUrl: "{{base URL of the Okta org}}",
-        redirectUri: "{{Redirect URL in the Okta OIDC application}}",
-        clientId: "{{Cliend ID of the OIDC App}}",   //CLIENT ID GOES HERE
+        baseUrl: "https://csm-apac.oktapreview.com",
+        redirectUri: "https://mortpanda.github.io/okta-siw-hibp-check/",
+        clientId: "aaa0oa17rxjm2Fgi4yT31d7",   //CLIENT ID GOES HERE
         authParams: {
-            issuer: '{{Authorisation server URL}}',
+            issuer: 'https://csm-apac.oktapreview.comoauth2/default',
             issuer: 'default',
             responseType: ['token', 'id_token'],
             responseMode: 'fragment',
@@ -42,6 +42,7 @@ function OktaWidget() {
             preSubmit: function (postData, onSuccess, onFailure) {
                 const myDiv = document.getElementById("console");        
                 document.getElementById("console").innerHTML = " ";
+                document.getElementById("console").innerHTML = "<br> <br> <h1 style=" + "'padding: 15px'>" + "CHECKING HIBP.......";
                 // handle preSubmit callback
                 var getEmailvalue = document.getElementsByName('email')[0].value;
                 var getFirstName = document.getElementsByName('firstName')[0].value;
@@ -60,9 +61,10 @@ function OktaWidget() {
                         hbipres = this.responseText;
                         lines = hbipres.split("\n");
                         //document.getElementById("console").innerHTML += "<br>"
+                        document.getElementById("console").innerHTML = " ";
                         for(i = 0; i < lines.length; i++){ 
                             document.getElementById("console").innerHTML += "<font color=white>" + '&nbsp' + '&nbsp' + lines[i] + "<br>"; 
-                              arrLines = lines[i].split(":");
+                            arrLines = lines[i].split(":");
                             var StringFromHIBP = arrLines[0].toUpperCase();
                             var StringToCheck = strCompareText.toUpperCase();
                             myDiv.scrollTop = myDiv.scrollHeight;

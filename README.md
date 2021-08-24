@@ -21,5 +21,13 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
   - Set CORS to allow redirect
  
 ## How to run this tool
+- In a directory of your choice,
 `git clone https://github.com/mortpanda/okta-siw-hibp-check.git`
-
+- Enter the directory,
+`cd okta-siw-hibp-check`
+- Install pakackages
+`npm install`
+- Run the tool
+`ng serve`
+- Open the tool
+`http://localhost:4200`
