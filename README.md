@@ -22,6 +22,7 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
  
 ## How to run this tool
 - In a directory of your choice,
+
 `git clone https://github.com/mortpanda/okta-siw-hibp-check.git`
 - Enter the directory,
 `cd okta-siw-hibp-check`
@@ -31,3 +32,5 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
 `ng serve`
 - Open the tool
 `http://localhost:4200`
+
+
