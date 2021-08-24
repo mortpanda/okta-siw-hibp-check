@@ -102,8 +102,11 @@ function OktaWidget() {
     });
     
     oktaSignIn.on('afterRender', function (context) {
+
+
         console.log(context.controller);
         if (context.controller == 'registration') {
+            
 
             // Retrieve fields
             var nativElemFirstName = document.getElementsByName('firstName')[0];
