@@ -5,69 +5,68 @@
 
 <div>
   <mat-grid-list #grid [cols]="cols" rowHeight="710px" gutterSize="0px" >
-    <mat-grid-tile><div class="tile-content" id="okta-signin-container"></div></mat-grid-tile>
+
     <mat-grid-tile><div id="console" class="console">
-      <br>
-      <!-- -------------- -->
-      <!-- English Below -->
-      <!-- -------------- -->
-      <!-- <h1 style="text-align:center">Okta Signin Widget with HIBP check</h1>
-      <br>
-      <h2 class="section_head">What does this signin widget do?</h2>
-      <p class="section">On the self-registration page, the widget will take the entered password, 
-        and check against "Have I been pwned"(https://haveibeenpwned.com/) password database on whether the password has been comprimised.
-        
-      </p>
-      <h2 class="section_head">How to use this widget</h2>
-      <p class="section">1. On the Okta Signin Widget, click on "Sign up".</p>
-      <p class="section">2. Enter information about your new account.</p>
-      <p class="section">3. Click "Submit".</p>
-      <br>
-      <p  class="section">The widget will not actually create an account.  Only go as far as checking the entered password again https://haveibeenpwned.com. </p>
-      <p  class="section">When a matched is found in HIBP, the results will be displayed on this screen.
-        Entered password will not actually be sent to the HIBP server.  The entered password will be hashed in SHA1, 
-        then the first 5 characters of the hashed password will be used to make an API call to the HIBP server, where the HIBP server will return all matchin suffixes, 
-        and the number of times the password has been found to be breached.
-      </p> -->
-
-      <!-- -------------- -->
-      <!-- Japanese Below -->
-      <!-- -------------- -->
-      <h1 style="text-align:center">Okta Signin Widget <br> with HIBP check</h1>
-      <br>
-
-      <h2 class="section_head">このWidgetの目的</h2>
-      <p class="section">Okta WidgetのSelf-service Registration機能を使い、
-        <br>テナント上でアカウントを作成する際に、入力されたパスコードを「Have I been pwned」
-        (https://haveibeenpwned.com)
-        上の漏洩パスワードリストと比較し、「Have I been pwned」上で漏洩した回数をターミナル上に表示します。
-      
-        
-      </p>
-      <h2 class="section_head">Widgetの使い方</h2>
-      <p class="section">1. Widget上の「サインアップ」をクリック</p>
-      <p class="section">2. 作成するアカウントの情報を入力</p>
-      <p class="section">3. 「登録」をクリック</p>
-      <br>
-      <p  class="section">実際にはユーザーは作成されません。「Have I been pwned」<br>
-        (https://haveibeenpwned.com)との確認のみになります。</p>
-      <p  class="section">パスワードの確認方法についても、パスワードが「Have I been pwned」(https://haveibeenpwned.com)に送信される訳で無く、ハッシュ化されたパスワードの最初の5文字のみ、
-        「Have I been pwned」(https://haveibeenpwned.com)に送信されます。詳しくは以下のURLをご覧ください。
-        <a href='https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange'>https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange</a>
         <br>
+        <!-- -------------- -->
+        <!-- English Below -->
+        <!-- -------------- -->
+        <!-- <h1 style="text-align:center">Okta Signin Widget with HIBP check</h1>
         <br>
-        <br><br><br>
+        <h2 class="section_head">What does this signin widget do?</h2>
+        <p class="section">On the self-registration page, the widget will take the entered password, 
+          and check against "Have I been pwned"(https://haveibeenpwned.com/) password database on whether the password has been comprimised.
+          
+        </p>
+        <h2 class="section_head">How to use this widget</h2>
+        <p class="section">1. On the Okta Signin Widget, click on "Sign up".</p>
+        <p class="section">2. Enter information about your new account.</p>
+        <p class="section">3. Click "Submit".</p>
+        <br>
+        <p  class="section">The widget will not actually create an account.  Only go as far as checking the entered password again https://haveibeenpwned.com. </p>
+        <p  class="section">When a matched is found in HIBP, the results will be displayed on this screen.
+          Entered password will not actually be sent to the HIBP server.  The entered password will be hashed in SHA1, 
+          then the first 5 characters of the hashed password will be used to make an API call to the HIBP server, where the HIBP server will return all matchin suffixes, 
+          and the number of times the password has been found to be breached.
+        </p> -->
 
-      </p>
-      <!-- -------------- -->
-      <!-- -------------- -->
-      <!-- -------------- -->
+        <!-- -------------- -->
+        <!-- Japanese Below -->
+        <!-- -------------- -->
+        <h1 style="text-align:center">Okta Signin Widget <br> with HIBP check</h1>
+        <br>
+
+        <h2 class="section_head">このWidgetの目的</h2>
+        <p class="section">Okta WidgetのSelf-service Registration機能を使い、
+          <br>テナント上でアカウントを作成する際に、入力されたパスコードを「Have I been pwned」
+          (https://haveibeenpwned.com)
+          上の漏洩パスワードリストと比較し、「Have I been pwned」上で漏洩した回数をターミナル上に表示します。
+        
+          
+        </p>
+        <h2 class="section_head">Widgetの使い方</h2>
+        <p class="section">1. Widget上の「サインアップ」をクリック</p>
+        <p class="section">2. 作成するアカウントの情報を入力</p>
+        <p class="section">3. 「登録」をクリック</p>
+        <br>
+        <p  class="section">実際にはユーザーは作成されません。「Have I been pwned」<br>
+          (https://haveibeenpwned.com)との確認のみになります。</p>
+        <p  class="section">パスワードの確認方法についても、パスワードが「Have I been pwned」(https://haveibeenpwned.com)に送信される訳で無く、ハッシュ化されたパスワードの最初の5文字のみ、
+          「Have I been pwned」(https://haveibeenpwned.com)に送信されます。詳しくは以下のURLをご覧ください。
+          <a href='https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange'>https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange</a>
+          <br>
+          <br>
+          <br><br><br>
+
+        </p>
+        <!-- -------------- -->
+        <!-- -------------- -->
+        <!-- -------------- -->
 
 
-    </div></mat-grid-tile>
-    <!--<mat-grid-tile><div ><video controls autoplay muted="" loop="" preload="metadata" width="70%" height="70%" 
-      ><source src="https://www-assets.okta.com/homepage/a1_r06_v16_transp_cropped_mov_1M_crf63_1024px.webm" type="video/webm" class="tile-content"></video></div></mat-grid-tile>
-  -->
+      </div>
+    </mat-grid-tile>
+      <mat-grid-tile><div class="tile-content" id="okta-signin-container"></div></mat-grid-tile>
     </mat-grid-list> 
   
    <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
