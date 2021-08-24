@@ -5,7 +5,7 @@ var strMatchedPW;
 function OktaWidget() {
     
     const oktaSignIn = new OktaSignIn({
-        logo: 'https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png',
+        //logo: 'https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png',
         language: 'ja',
         colors: {
             brand: '#00297A'
@@ -78,7 +78,7 @@ function OktaWidget() {
                         //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Match found! The password entered has been comprimised " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " times according to HIBP" + "</h1>";
                         //document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  Hashed password used to check against HIBP is " + "<font color=red>" + StringToCheck +"<font color=white>" + "</h2>";
                         ///////Japanese///////
-                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードはHIBMP上で " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
+                        document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードはHIBP上で " + "<font color=red>" + strMatchedPW +  "<font color=white>" + " 回漏洩している履歴があります。" + "</h1>";
                         document.getElementById("console").innerHTML += '&nbsp' + '&nbsp' + "<br><br><br><br><h1 style=" + "'padding: 15px'>"  + "  入力されたパスワードのハッシュ値は " + "<font color=red>" + StringToCheck +"<font color=white>" + " です。</h2>";
                         /////////////////////
                         myDiv.scrollTop = myDiv.scrollHeight;

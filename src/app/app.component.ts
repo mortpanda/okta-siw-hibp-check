@@ -17,10 +17,10 @@ export class AppComponent implements OnInit {
   cols! : number;  
 
   gridByBreakpoint = {
-    xl: 3,
-    lg: 3,
-    md: 3,
-    sm: 2,
+    xl: 2,
+    lg: 2,
+    md: 2,
+    sm: 1,
     xs: 1
   }
 
