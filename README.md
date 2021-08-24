@@ -21,5 +21,5 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
   - Set CORS to allow redirect
  
 ## How to run this tool
-code(git clone https://github.com/mortpanda/okta-siw-hibp-check.git)
+`git clone https://github.com/mortpanda/okta-siw-hibp-check.git`
 
