@@ -12,6 +12,14 @@ In this demo, the widget will **NOT** actual register you.  The widget will only
 ![](Capture-2-ENG.PNG)
 
 ## Pre-requisites for running this application
+- Nodejs setup with Angluar CLI
 - Okta developer account - If you do not have one already, you can sign up for a free trial [here](https://developer.okta.com/signup/).
-- 
+- Create an OIDC application in the Okta admin console to obtain the below information.
+  - Client ID
+  - redirect URL (you need to set this)
+  - Authorisation server URL
+  - Set CORS to allow redirect
+ 
+## How to run this tool
+code(git clone https://github.com/mortpanda/okta-siw-hibp-check.git)
 
