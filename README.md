@@ -4,8 +4,11 @@
 This is merely a personal projct.
 
 ## What does this tool do?
-In the widget's "registration" context, the password entered by the user to perform self-registration will have checked against [HIBP](https://haveibeenpwned.com/) prior to submitting the information to perform a self-registration.
-In this demo, the widget will **NOT** actual register you.  The widget will only go as far as performing a check against [HIBP](https://haveibeenpwned.com/) and returing the number of times, the password has been found to be breached.  The results will be displayed on the terminal window.
+In the widget's "registration" context, the password entered by the user to perform self-registration will be checked against [HIBP](https://haveibeenpwned.com/) prior to submitting the information to perform a self-registration.
+In this demo, the widget will **NOT** actually register you.  The widget will only go as far as performing a check against [HIBP](https://haveibeenpwned.com/) and returing the number of times, the password has been found to be breached.  The results will be displayed on the terminal window.
+
+The entered password will be checked against [HIBP](https://haveibeenpwned.com/) using the API that has been made available.  
+More information on the [HIBP](https://haveibeenpwned.com/) API can be found here [https://haveibeenpwned.com/API/v2#PwnedPasswords](https://haveibeenpwned.com/API/v2#PwnedPasswords).
 
 ## Screenshots 
 ![](Capture-1-ENG.PNG)
