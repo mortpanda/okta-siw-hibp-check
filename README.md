@@ -22,6 +22,34 @@ More information on the [HIBP](https://haveibeenpwned.com/) API can be found her
   - redirect URL (you need to set this)
   - Authorisation server URL
   - Set CORS to allow redirect
+  
+## Development Environment
+```
+Angular CLI: 11.2.14
+Node: 14.15.0
+OS: linux x64
+
+Angular: 11.2.14
+... animations, cli, common, compiler, compiler-cli, core, forms
+... platform-browser, platform-browser-dynamic, router
+Ivy Workspace: Yes
+
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1102.14
+@angular-devkit/build-angular   0.1102.14
+@angular-devkit/core            11.2.14
+@angular-devkit/schematics      11.2.14
+@angular/cdk                    11.2.13
+@angular/flex-layout            12.0.0-beta.34
+@angular/material               11.2.13
+@schematics/angular             11.2.14
+@schematics/update              0.1102.14
+rxjs                            6.6.7
+typescript                      4.1.6
+
+```
+
  
 ## How to run this tool
 - In a directory of your choice,
