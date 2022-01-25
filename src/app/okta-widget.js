@@ -102,7 +102,14 @@ function OktaWidget() {
     });
     
     oktaSignIn.on('afterRender', function (context) {
-
+        customButtons: [{
+            title: 'Click Me',
+            className: 'btn-customAuth',
+            click: function() {
+              // clicking on the button navigates to another page
+              window.location.href = 'https://www.example.com';
+            }
+          }],
 
         console.log(context.controller);
         if (context.controller == 'registration') {
@@ -130,6 +137,7 @@ function OktaWidget() {
             $(parentsEmail).insertAfter(parentsLastName);
             $(parentsPwd).insertAfter(parentsEmail);
             $('subschemas-password').insertAfter(parentsPwd);
+            
         }
     });
     
